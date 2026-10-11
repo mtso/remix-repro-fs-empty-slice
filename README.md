@@ -18,4 +18,5 @@ npm start
 
 - Open http://127.0.0.1:3000
 - Upload the `fixtures/empty.png`
+- Observe 500 "Internal Server Error" response
 - Observe server log error: `Upload processing failed: RangeError [ERR_OUT_OF_RANGE]: The value of "end" is out of range. It must be >= 0 && <= 9007199254740991. Received -1`

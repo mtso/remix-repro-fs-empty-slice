@@ -3,16 +3,13 @@ import { createServer } from 'node:http'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { FormDataParseError, parseFormData } from 'remix/form-data-parser'
+import { openLazyFile, writeFile } from 'remix/fs'
 import { MultipartParseError } from 'remix/multipart-parser'
 import { createRequestListener } from 'remix/node-fetch-server'
 import { createHtmlResponse } from 'remix/response/html'
 import { createRouter } from 'remix/router'
 import { get, post, route } from 'remix/routes'
 
-const useLocalFs = process.argv.includes('--local-fs')
-const { openLazyFile, writeFile } = useLocalFs
-  ? await import('../../packages/fs/src/index.ts')
-  : await import('remix/fs')
 const PNG_SIGNATURE = [137, 80, 78, 71, 13, 10, 26, 10]
 const routes = route({ home: get('/'), upload: post('/upload') })
 const router = createRouter()
@@ -112,5 +109,4 @@ server.listen(Number(process.env.PORT ?? 3000), '127.0.0.1', () => {
   }
 
   console.log(`PNG upload server: http://127.0.0.1:${address.port}`)
-  console.log(`Filesystem: ${useLocalFs ? 'local packages/fs source' : 'published remix@3.0.0'}`)
 })
