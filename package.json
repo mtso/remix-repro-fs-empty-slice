@@ -10,6 +10,6 @@
     "start": "node upload-repro.mjs"
   },
   "dependencies": {
-    "remix": "3.0.0"
+    "remix": "3.0.0-rc.1"
   }
 }
